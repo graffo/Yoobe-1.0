@@ -422,8 +422,7 @@ ul.products,
     .single-product div.product form.cart::after {
       clear: both; }
     .single-product div.product form.cart .quantity {
-      float: left;
-      margin-right: 0.875em; }
+      float: left; }
     .single-product div.product form.cart table.woocommerce-grouped-product-list .woocommerce-grouped-product-list-item__quantity {
       float: none;
       margin-right: 0; }

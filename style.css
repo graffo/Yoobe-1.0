@@ -1,7 +1,7 @@
 /*!
 Theme Name:   YoobeCo
 Theme URI:    https://yoobe.co/
-Author:       Graffp
+Author:       Graffo
 Author URI:   https://behance.net/graffo
 Description:  Storefront is the perfect theme for your next WooCommerce project. Designed and developed by WooCommerce Core developers, it features a bespoke integration with WooCommerce itself plus many of the most popular customer facing WooCommerce extensions. There are several layout & color options to personalise your shop, multiple widget regions, a responsive design and much more. Developers will love its lean and extensible codebase making it a joy to customize and extend. Looking for a WooCommerce theme? Look no further!
 Version:      2.5.5
@@ -1114,9 +1114,9 @@ input[type='submit'],
   border: 0;
   border-radius: 0;
   background: none;
-  background-color: #43454b;
-  border-color: #43454b;
-  color: #fff;
+  background-color: #fff;
+  border: 1px solid #9aa0a7;
+  color: #43454b;
   cursor: pointer;
   /* Improves usability and consistency of cursor style between image-type 'input' and others */
   padding: 0.6180469716em 1.41575em;
@@ -1125,6 +1125,9 @@ input[type='submit'],
   text-shadow: none;
   display: inline-block;
   -webkit-appearance: none; }
+  button:hover{
+    background-color: #43454b;
+  }
   button::after,
   input[type='button']::after,
   input[type='reset']::after,
@@ -1146,8 +1149,8 @@ input[type='submit'],
   .wc-block-grid__products .wc-block-grid__product .wp-block-button__link.alt,
   .added_to_cart.cta,
   .added_to_cart.alt {
-    background-color: #2c2d33;
-    border-color: #2c2d33; }
+    background-color: #fff;
+    border-color: #9aa0a7; }
     button.cta:hover, button.alt:hover,
     input[type='button'].cta:hover,
     input[type='button'].alt:hover,
@@ -1257,7 +1260,7 @@ input[type='password'],
 input[type='search'],
 textarea,
 .input-text {
-  padding: 0.6180469716em;
+  padding: 0.7em;
   background-color: #f2f2f2;
   color: #43454b;
   border: 0;
@@ -2240,14 +2243,14 @@ button.menu-toggle {
  /**
  * Dokan
  */
- .dokan-store .site-header, .single-product .site-header{
+ .dokan-store .site-header, .single-product .site-header, .woocommerce-cart .site-header{
    visibility: hidden;
    display: none;
  }
- .dokan-store .storefront-breadcrumb, .single-product .storefront-breadcrumb{
+ .dokan-store .storefront-breadcrumb, .single-product .storefront-breadcrumb, .woocommerce-cart .storefront-breadcrumb, .woocommerce-cart header, .woocommerce-cart #secondary{
   display: none;
 }
- .dokan-store .col-full, .single-product .col-full{
+ .dokan-store .col-full, .single-product .col-full, .woocommerce-cart .col-full{
    max-width: 100%;
    padding: 0;
  }
@@ -2264,6 +2267,15 @@ button.menu-toggle {
   width: 80%;
   margin: 50px auto;
   float:none;
+}
+.woocommerce-cart  .woocommerce-notices-wrapper-main, .woocommerce-cart-form, .cart-collaterals{
+  width: 60%;
+  margin: 50px auto;
+  float:none;
+}
+.woocommerce-cart  .content-area{
+  width: 100%;
+  margin-right: 0;
 }
 .profile-frame{
   width: 100%;
@@ -2422,8 +2434,17 @@ ul.products li.product .price{
   float: none;
   margin: 0;
   display: inline-block;
-  }
-
+}
+.woocommerce-variation-add-to-cart .minus{
+  float: left;
+  margin: 0;
+  display: inline-block;
+}
+.woocommerce-variation-add-to-cart .qty {
+  border-top: 1px solid #9aa0a7;
+  border-bottom: 1px solid #9aa0a7;
+  padding: 0.62em;
+}
   .zaddon_data{
     visibility: hidden;
     display: none !important;
@@ -2472,4 +2493,15 @@ ul.products li.product .price{
 #tab-title-shipping, #tab-title-seller, #tab-title-reviews{
   visibility: hidden;
   display: none;
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

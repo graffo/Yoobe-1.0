@@ -97,64 +97,61 @@ function bbloomer_change_gallery_columns_storefront() {
      return 1; 
 }
 
-add_action( 'woocommerce_before_add_to_cart_quantity', 'bbloomer_display_quantity_plus' );
-  
-function bbloomer_display_quantity_plus() {
-   echo '<button type="button" class="plus" >+</button>';
+/* Show Buttons */
+add_action( 'woocommerce_after_add_to_cart_quantity', 'display_quantity_plus' );
+
+function display_quantity_plus() {
+     echo '<button type="button" class="plus" >+</button>';
 }
-  
-add_action( 'woocommerce_after_add_to_cart_quantity', 'bbloomer_display_quantity_minus' );
-  
-function bbloomer_display_quantity_minus() {
-   echo '<button type="button" class="minus" >-</button>';
+
+add_action( 'woocommerce_before_add_to_cart_quantity', 'display_quantity_minus' );
+
+function display_quantity_minus() {
+     echo '<button type="button" class="minus" >-</button>';
 }
- 
-// Note: to place minus @ left and plus @ right replace above add_actions with:
-// add_action( 'woocommerce_before_add_to_cart_quantity', 'bbloomer_display_quantity_minus' );
-// add_action( 'woocommerce_after_add_to_cart_quantity', 'bbloomer_display_quantity_plus' );
-  
-// -------------
-// 2. Trigger jQuery script
-  
-add_action( 'wp_footer', 'bbloomer_add_cart_quantity_plus_minus' );
-  
-function bbloomer_add_cart_quantity_plus_minus() {
-   // Only run this on the single product page
-   if ( ! is_product() ) return;
-   ?>
-      <script type="text/javascript">
-           
-      jQuery(document).ready(function($){   
-           
-         $('form.cart').on( 'click', 'button.plus, button.minus', function() {
-  
-            // Get current quantity values
-            var qty = $( this ).closest( 'form.cart' ).find( '.qty' );
-            var val   = parseFloat(qty.val());
-            var max = parseFloat(qty.attr( 'max' ));
-            var min = parseFloat(qty.attr( 'min' ));
-            var step = parseFloat(qty.attr( 'step' ));
-  
-            // Change the value if plus or minus
-            if ( $( this ).is( '.plus' ) ) {
-               if ( max && ( max <= val ) ) {
-                  qty.val( max );
-               } else {
-                  qty.val( val + step );
-               }
-            } else {
-               if ( min && ( min >= val ) ) {
-                  qty.val( min );
-               } else if ( val > 1 ) {
-                  qty.val( val - step );
-               }
-            }
-              
-         });
-           
-      });
-           
-      </script>
+//Note: to place minus @ left and plus @ right replace above add_actions with:
+//add_action( 'woocommerce_before_add_to_cart_quantity', 'display_quantity_minus' );
+//add_action( 'woocommerce_after_add_to_cart_quantity', 'display_quantity_plus' );
+
+add_action( 'wp_footer', 'add_cart_quantity_plus_minus' );
+
+function add_cart_quantity_plus_minus() {
+ // Only run this on the single product page
+ if ( ! is_product() ) return;
+ ?>
+  <script type="text/javascript">
+
+  jQuery(document).ready(function($){   
+
+     $('form.cart').on( 'click', 'button.plus, button.minus', function() {
+
+        // Get current quantity values
+        var qty = $( this ).closest( 'form.cart' ).find( '.qty' );
+        var val   = parseFloat(qty.val());
+        var max = parseFloat(qty.attr( 'max' ));
+        var min = parseFloat(qty.attr( 'min' ));
+        var step = parseFloat(qty.attr( 'step' ));
+
+        // Change the value if plus or minus
+        if ( $( this ).is( '.plus' ) ) {
+           if ( max && ( max <= val ) ) {
+              qty.val( max );
+           } else {
+              qty.val( val + step );
+           }
+        } else {
+           if ( min && ( min >= val ) ) {
+              qty.val( min );
+           } else if ( val > 1 ) {
+              qty.val( val - step );
+           }
+        }
+
+     });
+  });
+
+
+  </script>
    <?php
 }
 
@@ -165,4 +162,5 @@ function reposition_sf_messages(){
     }
     remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); /*Single Product*/
     add_action('woocommerce_product_meta_end', 'storefront_shop_messages', 1 );
+    
 }
