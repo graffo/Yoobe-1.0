@@ -2640,17 +2640,23 @@ dl.variation dd {
         margin-right: 0;
     }
     .col2-set {
-        width: 52.9411764706%;
+        width: 52%;
         float: left;
-        margin-right: 5.8823529412%;
+        margin-right: 20px;
+    }
+    #customer_details .col-12 {
+        padding: 0 !important;
     }
     .col2-set .form-row-first {
-        width: 44.4444444444%;
+        width: 49.4444444444%;
         float: left;
-        margin-right: 11.1111111111%;
+        margin-right: 3%;
+    }
+    .woocommerce-input-wrapper {
+        width: 100%;
     }
     .col2-set .form-row-last {
-        width: 44.4444444444%;
+        width: 49.4444444444%;
         float: right;
         margin-right: 0;
     }
@@ -2773,6 +2779,9 @@ dl.variation dd {
     }
     #order_review .shop_table {
         margin-bottom: 2.617924em;
+    }
+    .woocommerce-checkout-review-order-table .cart_item {
+        border-bottom: 1px solid #43454b;
     }
     /**
 	 * My Account

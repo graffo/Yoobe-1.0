@@ -26,7 +26,7 @@
 
 <div id="page" class="hfeed site">
 	<?php do_action( 'storefront_before_header' ); ?>
-
+<?php if ( is_front_page() && is_home() ) {?>
 	<header id="masthead" class="site-header" role="banner" style="<?php storefront_header_styles(); ?>">
 		<div class="row mx-5">
 			<?php
@@ -52,7 +52,7 @@
 
 		
 	</header><!-- #masthead -->
-
+<?php } ?>
 	<?php
 	/**
 	 * Functions hooked in to storefront_before_content
