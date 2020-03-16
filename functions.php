@@ -92,10 +92,7 @@ wp_enqueue_script( 'bootstrap', 'https://stackpath.bootstrapcdn.com/bootstrap/4.
 wp_enqueue_script( 'fontawesome', 'https://kit.fontawesome.com/4bb7b724c1.js#asyncload');
 
 
-add_filter ( 'storefront_product_thumbnail_columns', 'bbloomer_change_gallery_columns_storefront' );
-function bbloomer_change_gallery_columns_storefront() {
-     return 1; 
-}
+
 
 /* Show Buttons */
 add_action( 'woocommerce_after_add_to_cart_quantity', 'display_quantity_plus' );
@@ -163,4 +160,12 @@ function reposition_sf_messages(){
     remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); /*Single Product*/
     add_action('woocommerce_product_meta_end', 'storefront_shop_messages', 1 );
     
+}
+
+add_action( 'after_setup_theme', 'yourtheme_setup' );
+
+function yourtheme_setup() {
+/*add_theme_support( 'wc-product-gallery-zoom' ); */
+add_theme_support( 'wc-product-gallery-lightbox' );
+add_theme_support( 'wc-product-gallery-slider' );
 }

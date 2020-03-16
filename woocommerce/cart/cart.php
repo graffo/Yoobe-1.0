@@ -193,7 +193,7 @@ if ( 'layout3' === $profile_layout ) {
 						</td>
 
 						<td class="product-quantity" data-title="<?php esc_attr_e( 'Quantity', 'woocommerce' ); ?>">
-						<button type="button" class="minus" >-</button>
+					
 						<?php
 						if ( $_product->is_sold_individually() ) {
 							$product_quantity = sprintf( '1 <input type="hidden" name="cart[%s][qty]" value="1" />', $cart_item_key );
@@ -213,7 +213,7 @@ if ( 'layout3' === $profile_layout ) {
 
 						echo apply_filters( 'woocommerce_cart_item_quantity', $product_quantity, $cart_item_key, $cart_item ); // PHPCS: XSS ok.
 						?>
-						<button type="button" class="plus" >+</button>
+					
 						</td>
 
 						<td class="product-subtotal" data-title="<?php esc_attr_e( 'Subtotal', 'woocommerce' ); ?>">
@@ -252,39 +252,7 @@ if ( 'layout3' === $profile_layout ) {
 	</table>
 	<?php do_action( 'woocommerce_after_cart_table' ); ?>
 </form>
-<script type="text/javascript">
 
-jQuery(document).ready(function($){   
-
-   $('.product-price').on( 'click', 'button.plus, button.minus', function() {
-
-	  // Get current quantity values
-	  var qty = $( this ).closest( '.product-price' ).find( '.qty' );
-	  var val   = parseFloat(qty.val());
-	  var max = parseFloat(qty.attr( 'max' ));
-	  var min = parseFloat(qty.attr( 'min' ));
-	  var step = parseFloat(qty.attr( 'step' ));
-
-	  // Change the value if plus or minus
-	  if ( $( this ).is( '.plus' ) ) {
-		 if ( max && ( max <= val ) ) {
-			qty.val( max );
-		 } else {
-			qty.val( val + step );
-		 }
-	  } else {
-		 if ( min && ( min >= val ) ) {
-			qty.val( min );
-		 } else if ( val > 1 ) {
-			qty.val( val - step );
-		 }
-	  }
-
-   });
-});
-
-
-</script>
 <?php do_action( 'woocommerce_before_cart_collaterals' ); ?>
 
 <div class="cart-collaterals">
