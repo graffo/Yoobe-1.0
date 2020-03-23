@@ -2648,7 +2648,7 @@ dl.variation dd {
         padding: 0 !important;
     }
     .col2-set .form-row-first {
-        width: 49.4444444444%;
+        width: 48.4444444444%;
         float: left;
         margin-right: 3%;
     }
@@ -2940,7 +2940,7 @@ dl.variation dd {
         background-color: #f5f5f5;
     }
     .woocommerce-tabs ul.tabs {
-        width: 100%;
+        width: 100% !important;
         margin-bottom: 50px;
         padding: 0;
         text-align: center;

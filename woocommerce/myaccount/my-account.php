@@ -1,8 +1,8 @@
 <?php
 /**
- * Empty cart page
+ * My Account page
  *
- * This template can be overridden by copying it to yourtheme/woocommerce/cart/cart-empty.php.
+ * This template can be overridden by copying it to yourtheme/woocommerce/myaccount/my-account.php.
  *
  * HOWEVER, on occasion WooCommerce will need to update template files and you
  * (the theme developer) will need to copy the new files to your theme to
@@ -17,15 +17,20 @@
 
 defined( 'ABSPATH' ) || exit;
 
-/*
- * @hooked wc_empty_cart_message - 10
+/**
+ * My Account navigation.
+ *
+ * @since 2.6.0
  */
-do_action( 'woocommerce_cart_is_empty' );
+do_action( 'woocommerce_account_navigation' ); ?>
 
-if ( wc_get_page_id( 'shop' ) > 0 ) : ?>
-	<p class="return-to-shop">
-		<a class="button wc-backward" href="javascript: history.go(-1)">
-			<?php esc_html_e( 'Return to shop', 'woocommerce' ); ?>
-		</a>
-	</p>
-<?php endif; ?>
+<div class="woocommerce-MyAccount-content">
+	<?php
+		/**
+		 * My Account content.
+		 *
+		 * @since 2.6.0
+		 */
+		do_action( 'woocommerce_account_content' );
+	?>
+</div>

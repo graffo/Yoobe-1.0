@@ -2525,7 +2525,7 @@ button.menu-toggle::after {
         margin-right: 4.347826087%;
     }
     .storefront-full-width-content .content-area {
-        width: 100%;
+        width: 80%;
         float: left;
         margin-left: 0;
         margin-right: 0;
@@ -3091,9 +3091,6 @@ button.menu-toggle::after {
 
 .profile-img-square img {
     border-radius: 0;
-    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
     width: 200px;
     height: 200px;
     border: 1px solid #f2f2f2;
@@ -3155,9 +3152,7 @@ ul.products li.product .price {
     background: #fff;
     padding: 10px 15px;
     font-weight: bolder;
-    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
+    border: 1px solid #f2f2f2;
 }
 
 .flex-control-thumbs {
@@ -3235,7 +3230,23 @@ ul.products li.product .price {
     display: none;
 }
 
+#calc_shipping_state_field span {
+    width: 100%;
+}
 
+ul.wpuf-form.form-label-above li.field-size-medium .wpuf-fields {
+    width: 46%;
+}
+
+.dashboard {
+    width: 90%;
+    max-width: 90% !important;
+}
+
+.wpuf-theme-style ul{
+    list-style: none;
+    margin: 0;
+}
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button,
@@ -3288,7 +3299,8 @@ input[type=number] {
         margin: 0 20px;
     }
     .woocommerce-billing-fields__field-wrapper .woocommerce-input-wrapper,
-    .woocommerce-additional-fields__field-wrapper .woocommerce-input-wrapper {
+    .woocommerce-additional-fields__field-wrapper .woocommerce-input-wrapper,
+    .woocommerce-shipping-fields .woocommerce-input-wrapper {
         width: 100%;
     }
     .woocommerce-customer-details {
@@ -3298,5 +3310,24 @@ input[type=number] {
     .col2-set.addresses .col-2 {
         max-width: 100%;
         width: 100% !important;
+    }
+    .profile-info {
+        width: 100%;
+        text-align: center;
+    }
+    .store-name {
+        margin: 20px auto;
+        float: none;
+    }
+    .actions button {
+        width: 100%;
+    }
+    .cart-collaterals,
+    .shipping {
+        text-align: left !important;
+    }
+    .checkout_coupon {
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
