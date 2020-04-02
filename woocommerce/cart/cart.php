@@ -56,55 +56,30 @@ if ( 'layout3' === $profile_layout ) {
 }
 
 ?>
-<div class="profile-frame<?php echo esc_attr( $no_banner_class ); ?>" style="background: url('<?php echo esc_url( $store_user->get_banner() ); ?>') no-repeat center top">
+<div class="profile-frame">
 
-    <div class="profile-info-box profile-layout-<?php echo esc_attr( $profile_layout ); ?>">
-        
+<div class="profile-info-box profile-layout-<?php echo esc_attr( $profile_layout ); ?>">
+	
 
-        <div class="profile-info-summery-wrapper dokan-clearfix">
-            <div class="profile-info-summery">
-                <div class="profile-info-head">
-                    <div class="profile-img <?php echo esc_attr( $profile_img_class ); ?>">
-                        <img src="<?php echo esc_url( $store_user->get_avatar() ) ?>"
-                            alt="<?php echo esc_attr( $store_user->get_shop_name() ) ?>"
-                            size="250">
-                    </div>
-                    <?php if ( ! empty( $store_user->get_shop_name() ) && 'default' === $profile_layout ) { ?>
-                        <h1 class="store-name"><?php echo esc_html( $store_user->get_shop_name() ); ?></h1>
-                    <?php } ?>
-                </div>
+	<div class="profile-info-summery-wrapper dokan-clearfix">
+		<div class="profile-info-summery">
+			<div class="profile-info-head">
+				<div class="profile-img <?php echo esc_attr( $profile_img_class ); ?>">
+					<img src="<?php echo esc_url( $store_user->get_avatar() ) ?>"
+						alt="<?php echo esc_attr( $store_user->get_shop_name() ) ?>"
+						size="250">
+				</div>
+				<?php if ( ! empty( $store_user->get_shop_name() ) && 'default' === $profile_layout ) { ?>
+					<h1 class="store-name"><?php echo esc_html( $store_user->get_shop_name() ); ?></h1>
+				<?php } ?>
+			</div>
 
-                <div class="profile-info">
-                    <?php if ( ! empty( $store_user->get_shop_name() ) && 'default' !== $profile_layout ) { ?>
-                        <h1 class="store-name"><?php echo esc_html( $store_user->get_shop_name() ); ?></h1>
-                    <?php } ?>
-
-                    
-                    <?php if ( $social_fields ) { ?>
-                        <div class="store-social-wrapper">
-                            <ul class="store-social">
-                                <?php foreach( $social_fields as $key => $field ) { ?>
-                                    <?php if ( !empty( $social_info[ $key ] ) ) { ?>
-                                        <li>
-                                            <a href="<?php echo esc_url( $social_info[ $key ] ); ?>" target="_blank"><i class="fa fa-<?php echo esc_attr( $field['icon'] ); ?>"></i></a>
-                                        </li>
-                                    <?php } ?>
-                                <?php } ?>
-                            </ul>
-                        </div>
-                    <?php } ?>
-                </div> <!-- .profile-info -->
-            </div><!-- .profile-info-summery -->
-        </div><!-- .profile-info-summery-wrapper -->
-    </div> <!-- .profile-info-box -->
-        <div class="carrinho_topo align-middle">
-        <a class="cart-customlocation" href="<?php echo wc_get_cart_url(); ?>" title="<?php _e( 'View your shopping cart' ); ?>">
-            <i class="fas fa-shopping-basket"></i>
-            <span><?php echo sprintf ( _n( '%d', '%d', WC()->cart->get_cart_contents_count() ), WC()->cart->get_cart_contents_count() ); ?></span>
-        </a>  
-        </div>    
+			
+			<a class="conta-topo float-right" href="<?php echo home_url(); ?>/minha-conta"><i class="fas fa-user"></i>&nbsp;Minha Conta</a>    
+		</div><!-- .profile-info-summery -->
+	</div><!-- .profile-info-summery-wrapper -->
+</div> <!-- .profile-info-box -->
 </div> <!-- .profile-frame -->
-
 
 <?php do_action( 'woocommerce_before_cart' ); ?>
 
@@ -226,7 +201,7 @@ if ( 'layout3' === $profile_layout ) {
 				}
 			}
 			?>
-
+			<?php wc_print_notices(); ?>
 			<?php do_action( 'woocommerce_cart_contents' ); ?>
 
 			<tr>

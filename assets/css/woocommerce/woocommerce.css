@@ -2321,6 +2321,9 @@ dl.variation dd {
     .site-main ul.products.columns-4 li.product {
         width: 22.05%;
         margin-right: 3.8%;
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        overflow: auto;
     }
     .site-main ul.products.columns-5 li.product {
         width: 16.9%;
@@ -2648,7 +2651,7 @@ dl.variation dd {
         padding: 0 !important;
     }
     .col2-set .form-row-first {
-        width: 48.4444444444%;
+        width: 47.4444444444%;
         float: left;
         margin-right: 3%;
     }
@@ -2656,9 +2659,12 @@ dl.variation dd {
         width: 100%;
     }
     .col2-set .form-row-last {
-        width: 49.4444444444%;
+        width: 47.4444444444%;
         float: right;
         margin-right: 0;
+    }
+    #billing_cellphone_field{
+        width: 100%;
     }
     .col2-set .col-1,
     .col2-set .col-2 {
@@ -2936,7 +2942,7 @@ dl.variation dd {
         margin-bottom: 3.706325903em;
     }
     .woocommerce-tabs {
-        padding: 60px 20%;
+        padding: 60px 10%;
         background-color: #f5f5f5;
     }
     .woocommerce-tabs ul.tabs {

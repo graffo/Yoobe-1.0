@@ -12,7 +12,7 @@ get_header(); ?>
 
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
-
+		
 		<?php
 		/**
 		 * woocommerce_before_main_content hook.
@@ -22,7 +22,7 @@ get_header(); ?>
 		 */
 		do_action( 'woocommerce_before_main_content' );
 	?>
-
+	<?php wc_print_notices(); ?>
 		<?php while ( have_posts() ) : ?>
 			<?php the_post(); ?>
 

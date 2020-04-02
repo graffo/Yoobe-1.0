@@ -69,30 +69,21 @@ if ( version_compare( get_bloginfo( 'version' ), '4.7.3', '>=' ) && ( is_admin()
 }
 
 
-
-// Async load para os scripts enfileirados
-function ikreativ_async_scripts($url)
-{
-    if ( strpos( $url, '#asyncload') === false )
-        return $url;
-    else if ( is_admin() )
-        return str_replace( '#asyncload', '', $url );
-    else
-	return str_replace( '#asyncload', '', $url )."' async='async"; 
-    }
-add_filter( 'clean_url', 'ikreativ_async_scripts', 11, 1 );
+function yoobe_enqueue_styles() {
+    // Css e Scripts enfileirados do Boostratp e Sjquery
+    wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
+  }
+add_action( 'wp_enqueue_scripts', 'yoobe_enqueue_styles');
 
 
-// Css e Scripts enfileirados do Boostratp e Sjquery
-wp_enqueue_style( 'bootstrap', get_template_directory_uri() . '/assets/css/bootstrap.min.css' );
+function yoobe_enqueue_scripts() {
+    wp_enqueue_script( 'jquery', 'https://code.jquery.com/jquery-3.3.1.slim.min.js',3.31, true);
+    wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/js/popper.min.js', array ( 'jquery' ), 1.1, true);
+    wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js',array ( 'jquery' ), 4.1, true);
+    wp_enqueue_script( 'bootstrapbundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js',array ( 'jquery' ), 4.1, true);
 
-wp_enqueue_script( 'jquery', get_template_directory_uri() . '/assets/js/jquery-3.4.1.slim.min.js#asyncload');
-wp_enqueue_script( 'popper', get_template_directory_uri() . '/assets/js/popper.min.js#asyncload');
-wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/assets/js/bootstrap.min.js#asyncload');
-wp_enqueue_script( 'bootstrapbundle', get_template_directory_uri() . '/assets/js/bootstrap.bundle.min.js#asyncload');
-
-
-
+}
+add_action( 'wp_enqueue_scripts', 'yoobe_enqueue_scripts');
 
 /* Botões de  Mais e Menos no Produto */
 add_action( 'woocommerce_after_add_to_cart_quantity', 'display_quantity_plus' );
@@ -150,67 +141,68 @@ function add_cart_quantity_plus_minus() {
 }
 
 // Mudança do local de notificações do carrinho do Storefront
-add_action( 'wp_head', 'reposition_sf_messages' );
-function reposition_sf_messages(){
-    if( is_product() ) {
-        remove_action( 'storefront_content_top','storefront_shop_messages',15 );
-    }
-    remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); /*Single Product*/
-    add_action('woocommerce_product_meta_end', 'storefront_shop_messages', 1 );
+add_action( 'woocommerce_before_shop_loop', 'wc_print_notices', 10 );
+add_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 );
+add_action( 'woocommerce_before_single_product_summary', 'wc_print_notices', 10 );
+remove_action( 'woocommerce_before_shop_loop', 'wc_print_notices', 10 ); /*Archive Product*/
+remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 ); /*Single Product*/
+remove_action( 'storefront_content_top', 'storefront_shop_messages', 1 );
+remove_action( 'woocommerce_before_single_product', 'woocommerce_output_all_notices', 10 );
+add_action( 'wp_head', 'customize_notices' );
+function customize_notices(){
+    if( is_product() )
+        remove_action( 'storefront_content_top', 'storefront_shop_messages', 15 );
+    remove_action( 'woocommerce_before_single_product', 'wc_print_notices', 10 );
     
 }
 
 
-// Campos extras do perfil de usuários no wp-admin
+
+
+// add tag support to pages
+function tags_support_all() {
+	register_taxonomy_for_object_type('post_tag', 'page');
+}
+
+// ensure all tags are included in queries
+function tags_support_query($wp_query) {
+	if ($wp_query->get('tag')) $wp_query->set('post_type', 'any');
+}
+
+// tag hooks
+add_action('init', 'tags_support_all');
+add_action('pre_get_posts', 'tags_support_query');
+
+add_action('wp_logout','ps_redirect_after_logout');
+function ps_redirect_after_logout(){
+         wp_redirect( home_url('/log-in/') );
+         exit();
+};
+
+
+add_action( 'wp_login', 'redirect_dropshipper' );
+
 add_action( 'show_user_profile', 'extra_user_profile_fields' );
 add_action( 'edit_user_profile', 'extra_user_profile_fields' );
 
-add_action( 'admin_enqueue_scripts', 'mytheme_backend_scripts');
-
-if ( ! function_exists( 'mytheme_backend_scripts' ) ){
-    function mytheme_backend_scripts( $hook ) {
-        wp_enqueue_style( 'wp-color-picker');
-        wp_enqueue_script( 'wp-color-picker');
-    }
-}
-
 function extra_user_profile_fields( $user ) { ?>
+    <h3><?php _e("Proteção da Loja", "blank"); ?></h3>
 
-<script>
-        jQuery(document).ready(function($){
-            $('.jscolor').each(function(){
-                $(this).wpColorPicker();
-                });
-        });
-        </script>   
-    <h3><?php _e("Extra profile information", "blank"); ?></h3>
-  
     <table class="form-table">
     <tr>
-        <th><label for="header"><?php _e("Teste"); ?></label></th>
+        <th><label for="protegida"><?php _e("Loja só estara visível somente para usuários cadastrados?"); ?></label></th>
         <td>
-        
-      <input type="text" class="jscolor" >
-      
-    </div>
-        </td>
-    </tr>
-    <tr>
-        <th><label for="city"><?php _e("City"); ?></label></th>
-        <td>
-            <input type="text" name="city" id="city" value="<?php echo esc_attr( get_the_author_meta( 'city', $user->ID ) ); ?>" class="regular-text jscolor" /><br />
-            <span class="description"><?php _e("Please enter your city."); ?></span>
-        </td>
-    </tr>
-    <tr>
-    <th><label for="postalcode"><?php _e("Postal Code"); ?></label></th>
-        <td>
-            <input type="text" name="postalcode" id="postalcode" value="<?php echo esc_attr( get_the_author_meta( 'postalcode', $user->ID ) ); ?>" class="regular-text" /><br />
-            <span class="description"><?php _e("Please enter your postal code."); ?></span>
+            <?php $protected = get_the_author_meta( 'protegida', $user->ID )?>
+            <select name="protegida">
+                <option>Selecione</option>
+                <option value="0" <?php if($protected == 0) echo 'selected="selected"'; ?>> <?php _e("Não"); ?> </option>
+                <option value="1" <?php if($protected == 1) echo 'selected="selected"'; ?>"> <?php _e("Sim"); ?>  </option>
+            </select>
         </td>
     </tr>
     </table>
 <?php }
+
 add_action( 'personal_options_update', 'save_extra_user_profile_fields' );
 add_action( 'edit_user_profile_update', 'save_extra_user_profile_fields' );
 
@@ -218,38 +210,52 @@ function save_extra_user_profile_fields( $user_id ) {
     if ( !current_user_can( 'edit_user', $user_id ) ) { 
         return false; 
     }
-    update_user_meta( $user_id, 'address', $_POST['address'] );
-    update_user_meta( $user_id, 'city', $_POST['city'] );
-    update_user_meta( $user_id, 'postalcode', $_POST['postalcode'] );
+    update_user_meta( $user_id, 'protegida', $_POST['protegida'] );
 }
 
-// Menu extra no vendor dashbpard do dokan
-add_filter( 'dokan_query_var_filter', 'dokan_load_document_menu' );
-function dokan_load_document_menu( $query_vars ) {
-    $query_vars['customizacao'] = 'customizacao';
-    return $query_vars;
-}
-add_filter( 'dokan_get_dashboard_nav', 'dokan_add_help_menu' );
-function dokan_add_help_menu( $urls ) {
-    $urls['customizacao'] = array(
-        'title' => __( 'Customização', 'dokan'),
-        'icon'  => '<i class="fa fa-user"></i>',
-        'url'   => dokan_get_navigation_url( 'customizacao' ),
-        'pos'   => 51
-    );
-    return $urls;
-}
-add_action( 'dokan_load_custom_template', 'dokan_load_template' );
-function dokan_load_template( $query_vars ) {
-    if ( isset( $query_vars['customizacao'] ) ) {
-        require_once dirname( __FILE__ ). 'dokan/customizacao.php';
-       }
-}
 
-// Ocultar notificações de atualizações do wordpress, temas e plugins
-function remove_core_updates(){
-global $wp_version;return(object) array('last_checked'=> time(),'version_checked'=> $wp_version,);
+add_filter( 'auto_update_plugin', '__return_false' );
+add_filter( 'auto_update_theme', '__return_false' );
+
+
+/* Where to go if a login failed */
+function custom_login_failed() {
+	$login_page  = home_url('/log-in/');
+	wp_redirect($login_page . '?login=failed');
+	exit;
 }
-add_filter('pre_site_transient_update_core','remove_core_updates'); //hide updates for WordPress itself
-add_filter('pre_site_transient_update_plugins','remove_core_updates'); //hide updates for all plugins
-add_filter('pre_site_transient_update_themes','remove_core_updates'); //hide updates for all themes
+add_action('wp_login_failed', 'custom_login_failed');
+
+/* Where to go if any of the fields were empty */
+function verify_user_pass($user, $username, $password) {
+	$login_page  = home_url('/log-in/');
+	if($username == "" || $password == "") {
+		wp_redirect($login_page . "?login=empty");
+		exit;
+	}
+}
+add_filter('authenticate', 'verify_user_pass', 1, 3);
+
+add_filter( 'woocommerce_shipping_package_name', 'custom_shipping_package_name' );
+function custom_shipping_package_name( $name ) {
+  return 'Frete';
+}
+add_filter( 'woocommerce_ship_to_different_address_checked', '__return_false' );
+
+
+
+/**
+ * Remove product data tabs
+ */
+ add_filter( 'woocommerce_product_tabs', 'woo_remove_product_tabs', 98 );
+
+ function woo_remove_product_tabs( $tabs ) {
+ 
+     unset( $tabs['reviews'] ); 			// Remove the reviews tab
+     unset( $tabs['additional_information'] );  	// Remove the additional information tab
+     unset( $tabs['more_seller_product'] );  	// Remove the additional information tab
+ 
+     return $tabs;
+ }
+ add_action( 'woocommerce_before_single_product_summary', 'woocommerce_output_all_notices', 10 );
+ 

@@ -61,19 +61,6 @@ do_action( 'woocommerce_before_customer_login_form' ); ?>
 
 		</form>
 
-<?php if ( 'yes' === get_option( 'woocommerce_enable_myaccount_registration' ) ) : ?>
 
-	</div>
-
-	<div class="u-column2 col-2">
-
-		<h2><?php esc_html_e( 'Register', 'woocommerce' ); ?></h2>
-
-		<?php echo do_shortcode( '[wpuf_profile type="registration" id="134"]' )?>
-
-	</div>
-
-</div>
-<?php endif; ?>
 
 <?php do_action( 'woocommerce_after_customer_login_form' ); ?>

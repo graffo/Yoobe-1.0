@@ -16,25 +16,52 @@
 
 	<footer id="colophon" class="site-footer" role="contentinfo">
 		<div class="row">
-			<div class="container rodape">
-				Informações complementares de Rodapé
+		
+			<div class="rodape">
+				<div class="logo">
+				<img src="<?php bloginfo('template_directory'); ?>/assets/images/YOOBE-LOGO.png" />
+				</div>
+				<div class="politica float-right">
+					<a href="https://yoobe.co/politica-de-devolucao/" target="_blank">Política de Devolução</a>
+				</div>
 			</div>
+		
 		</div>
+
 		<div class="row">
-			<div class="container copyright">
-
-				<?php
-				/**
-				 * Functions hooked in to storefront_footer action
-				 *
-				 * @hooked storefront_footer_widgets - 10
-				 * @hooked storefront_credit         - 20
-				 */
-				do_action( 'storefront_footer' );
-				?>
-
+			
+			<div class="copyright">
+				<div class="col-1 float-left">
+					© All rights reserved
+				</div>	
+				<div class="col-1 float-right">
+					Made with <span>❤</span> by Yoobe
+				</div>
 			</div><!-- .container -->
 		</div>
+
+		<button type="button" class="btn btn-primary ajuda" data-toggle="modal" data-target="#exampleModalCenter">
+  			Precisa de Ajuda? Clique Aqui!
+		</button>
+		
+		
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Pedido de Suporte</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+		  
+	  <iframe src="https://app.pipefy.com/public_form/1231351?embedded=true" width="640" height="680" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
 	</footer><!-- #colophon -->
 
 	<?php do_action( 'storefront_after_footer' ); ?>

@@ -592,7 +592,7 @@ h6 a {
 
 h1,
 .alpha {
-    font-size: 2.617924em;
+    font-size: 1.6em;
     line-height: 1.214;
     letter-spacing: -1px;
     font-weight: bolder;
@@ -975,10 +975,15 @@ body {
  * Footer
  */
 
+footer {
+    position: relative;
+    bottom: 0;
+}
+
 .site-footer {
     background-color: #f3f3f3;
     color: #fff;
-    padding: 1.618em 0 6.706325903em;
+    padding: 1.618em 0 1em;
 }
 
 .site-footer h1,
@@ -992,7 +997,7 @@ body {
 
 .site-footer a:not(.button):not(.components-button) {
     color: #2c2d33;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .site-footer a:not(.button):not(.components-button):hover {
@@ -1555,6 +1560,7 @@ input[type='submit']:hover,
 .button:hover,
 .wc-block-grid__products .wc-block-grid__product .wp-block-button__link:hover,
 .added_to_cart:hover {
+    background-color: #2c2d33;
     color: #fff;
 }
 
@@ -2505,7 +2511,7 @@ button.menu-toggle::after {
         margin-right: 0;
     }
     .right-sidebar .content-area {
-        width: 80%;
+        width: 70%;
         float: left;
         margin-right: 0;
     }
@@ -2961,9 +2967,6 @@ button.menu-toggle::after {
         float: none !important;
         max-width: 200px;
     }
-    .carrinho_topo {
-        display: none;
-    }
     .profile-info {
         margin: 0 0 30px 0 !important;
     }
@@ -3053,7 +3056,7 @@ button.menu-toggle::after {
 }
 
 .single-product .content-area {
-    width: 80%;
+    width: 84%;
     margin: 50px auto;
     float: none;
 }
@@ -3075,6 +3078,7 @@ button.menu-toggle::after {
     width: 100%;
     position: relative;
     border-bottom: 1px solid #f2f2f2;
+    background-size: cover !important;
 }
 
 .profile-img-square {
@@ -3086,20 +3090,37 @@ button.menu-toggle::after {
 .profile-info {
     display: inline;
     float: left;
-    margin-top: 120px;
+    margin-top: 90px;
 }
 
-.profile-img-square img {
+.banner {
+    width: 70%;
+    margin: 50px auto;
+    overflow: hidden;
+}
+
+.profile-img img {
     border-radius: 0;
-    width: 200px;
-    height: 200px;
-    border: 1px solid #f2f2f2;
-    background-color: #fff;
+    width: 80px;
+    height: 80px;
+}
+
+.profile-info-summery-wrapper {
+    width: 100%;
+    background-color: #000;
 }
 
 .profile-frame .profile-info-box .profile-info-summery-wrapper .profile-info-summery {
     background: none;
     position: relative;
+    margin: 0 auto;
+    float: none;
+    width: 70%;
+}
+
+.profile-info-head {
+    float: left;
+    width: 100px;
 }
 
 .dokan-single-store .product {
@@ -3109,6 +3130,16 @@ button.menu-toggle::after {
     -o-transition: all .8s ease;
     -moz-transition: all .8s ease;
     -webkit-transition: all .8s ease;
+}
+
+.pts-breadcrumb {
+    padding: 8px 15px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    list-style: none;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+    border: none;
 }
 
 .dokan-single-store .product:hover {
@@ -3139,7 +3170,7 @@ button.menu-toggle::after {
 
 .dokan-single-store .product h2 {
     font-weight: bold !important;
-    font-size: 32px !important;
+    font-size: 1.2em !important;
     margin: 15px;
 }
 
@@ -3163,23 +3194,27 @@ ul.products li.product .price {
     text-align: left;
 }
 
-.carrinho_topo {
-    float: right;
-    position: absolute;
-    top: 50%;
-    right: 50px;
-    transform: translateY(-50%);
-    background: #fff;
-    padding: 10px 15px;
-    font-weight: bolder;
-    -webkit-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    -moz-box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
-    box-shadow: 3px 3px 0px 0px rgba(0, 0, 0, 0.18);
+.conta-topo {
+    color: #fff;
+    font-size: 0.8em;
+    margin: 29px 15px 0 0;
 }
 
-.fa-shopping-basket {
-    font-size: 50px;
-    color: #2c2d33;
+.conta-topo:hover {
+    color: #fff;
+}
+
+.carrinho_topo {
+    float: right;
+    margin-top: 16px;
+    padding: 14px 20px;
+    font-weight: bolder;
+    position: relative;
+}
+
+.page-template-page-login-modelo .storefront-breadcrumb,
+#post-77501 {
+    display: none;
 }
 
 .carrinho_topo span {
@@ -3187,14 +3222,67 @@ ul.products li.product .price {
     top: 5px;
     right: 5px;
     border-radius: 20px;
-    background-color: #43454b;
-    padding: 5px 15px;
-    color: #fff;
+    background-color: #fff;
+    padding: 1px 8px;
+    color: #43454b;
+    font-size: 0.8em;
+}
+
+.ico_carrinho {
+    background: url(assets/images/bag-icon-2.svg) no-repeat center center;
+    background-size: contain;
+    width: 20px;
+    height: 20px;
+    display: block;
 }
 
 .site-footer {
-    background-color: #43454b;
+    background-color: #303030;
     position: relative;
+    font-size: 0.8em;
+    text-decoration: none;
+}
+
+.rodape,
+.copyright {
+    width: 70%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.rodape .logo img {
+    width: 70px;
+    margin-right: 20px;
+}
+
+.rodape div {
+    display: inline-block;
+    width: auto;
+    line-height: 60px;
+    vertical-align: middle;
+}
+
+.page-template-page-login-modelo h1 {
+    margin-bottom: 5px;
+}
+
+#post-77501 {
+    margin-bottom: 5px !important;
+}
+
+.page-template-page-login-modelo #wpuf-login-form {
+    padding: 0;
+}
+
+.copyright {
+    border-top: 1px solid #43454b;
+    color: #fff;
+    margin: 25px auto 10px;
+    padding-top: 10px;
+}
+
+.copyright span {
+    color: deeppink;
 }
 
 
@@ -3243,16 +3331,90 @@ ul.wpuf-form.form-label-above li.field-size-medium .wpuf-fields {
     max-width: 90% !important;
 }
 
-.wpuf-theme-style ul{
+.wpuf-theme-style ul {
     list-style: none;
     margin: 0;
 }
+
+
 /* Chrome, Safari, Edge, Opera */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+#loginform label {
+    clear: both;
+    display: block;
+}
+
+#loginform #user,
+#loginform #pass {
+    width: 80%;
+    margin: 10px 0;
+    clear: both;
+}
+
+#loginform #wp-submit {
+    display: block;
+    clear: both;
+}
+
+.ajuda {
+    background-color: #488BF7;
+    border-radius: 20px;
+    color: #fff !important;
+    padding: 10px 15px;
+    text-decoration: none;
+    position: fixed;
+    right: 20px;
+    bottom: 40px;
+}
+
+.page-template-page-login-modelo .wpuf-login-form {
+    padding-top: 0 !important;
+}
+
+.minha-conta-top {
+    background-color: #131315;
+    padding: 0 14px;
+}
+
+.linha-topo {
+    width: 70%;
+    margin: 0 auto;
+    vertical-align: middle;
+}
+
+.minha-conta-top a {
+    background-color: #fff;
+    padding: 10px 15px;
+    color: #000;
+    float: right;
+    display: inline-block;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.fa-carrinho {
+    background: url(assets/images/bag-icon-2.png) no-repeat center left;
+    background-size: 16px;
+    padding-left: 20px;
+}
+
+.rodape a {
+    color: #fff !important;
+}
+
+#post-77526 #wpuf-login-form #wpuf-user_pass,
+#post-77526 #wpuf-login-form #wpuf-user_login {
+    width: 100%;
+}
+
+.login-branding img {
+    width: 80%;
 }
 
 
@@ -3330,4 +3492,120 @@ input[type=number] {
         padding-left: 15px;
         padding-right: 15px;
     }
+    .profile-info-head {
+        float: none;
+        margin: 20px auto;
+    }
+    .banner {
+        width: 100%;
+        margin: 0 auto;
+    }
+    #wpuf-login-form {
+        padding: 0px 20px !important;
+    }
+    .login-branding img {
+        width: 100%;
+    }
+    #loginform #user,
+    #loginform #pass,
+    #loginform #wp-submit {
+        width: 100%;
+        margin: 10px 0;
+        clear: both;
+    }
+    .carrinho_topo {
+        margin-right: 20px;
+        margin-top: 37px;
+    }
+    .profile-frame .profile-info-box .profile-info-summery-wrapper .profile-info-summery {
+        background: none;
+        position: relative;
+        margin: 0 auto;
+        float: left;
+        width: 100%;
+    }
+    .profile-info-head {
+        width: 80px;
+        height: 80px;
+        margin: 20px;
+        display: inline-block;
+    }
+    .profile-img img {
+        width: 80px;
+        height: 80px;
+    }
+    .conta-topo {
+        margin: 50px 0px 0 0;
+    }
+    .carrinho .conta-topo {
+        margin-left: 20px;
+        text-decoration: none;
+    }
+    .profile-frame {
+        position: relative;
+    }
+    .banner img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) {
+    .banner img {
+        width: 100%;
+        height: 50%;
+    }
+}
+
+
+/* Portrait and Landscape */
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+    .banner img {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.woocommerce-MyAccount-content .woocommerce-Button,
+.dokan-account-migration-lists,
+.woocommerce-MyAccount-navigation-link--max-quantity,
+.woocommerce-MyAccount-navigation-link--max-quantity {
+    display: none;
+}
+
+.dokan-settings-content .dokan-settings-area .dokan-banner {
+    height: auto !important;
+}
+
+.related {
+    display: none;
+}
+
+.produtos-custom {
+    width: 100% !important;
+    margin-top: 150px;
+}
+
+.check_produtos {
+    display: none;
+}
+
+input[type="checkbox"]+label.produto_box {
+    margin: 12px;
+}
+
+.produto_box .card {
+    min-height: 340px;
+}
+
+input[type="checkbox"]+label.produto_box .card {
+    border: 3px solid #f1f1f1;
+}
+
+input[type="checkbox"]:checked+label.produto_box .card {
+    border: 3px solid #062275;
 }
